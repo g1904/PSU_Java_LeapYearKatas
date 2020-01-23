@@ -14,13 +14,30 @@ import static org.hamcrest.core.IsEqual.equalTo;
  */
 public class LeapYearTest
 {
+  private LeapYear ly = new LeapYear();
 
   @Test
   public void positiveNumberThatIsDivisibleBy400() {
-    assertThat(new LeapYear().validLeapYear(400), equalTo(true));
+
+    assertThat(this.ly.validLeapYear(400), equalTo(true));
   }
 
   @Test
-  public void
+  public void yearDivisibleBy100AndNotBy400() {
+    int year = 1900;
+    assertThat(this.ly.validLeapYear(year), equalTo(false));
+  }
+
+  @Test
+  public void yearDivisibleBy4() {
+    int year = 2020;
+    assertThat(this.ly.validLeapYear(year), equalTo(true));
+  }
+
+  @Test
+  public void yearIsNotNegative() {
+    int year = -22;
+    assertThat(this.ly.validLeapYear(year), equalTo(false));
+  }
 
 }
